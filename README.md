@@ -1,48 +1,44 @@
 # Local AI Cybersecurity RAG Lab  
-
 CLI-Only · Native Ollama · Offline-First
 
 This repository documents the setup of a **local, CLI-only AI workstation** designed to support **cybersecurity analysis, research, and future automation** within a broader SOC-focused roadmap.
 
-
 ---
-
 
 ## Core components
 
 - **Ollama (native on Ubuntu)** — local inference engine  
-- **Primary model:**  
-  - Qwen3-Coder 30B (Q6 quantization)  
-- **Memory layer:**  
-  - SQLite (explicit persistence)  
-- **RAG  (offline-first):**
-  1. Wikipedia (curated / offline)
-  2. MITRE ATT&CK
-  3. arXiv (titles + abstracts only)
-  
-  
+- **Primary model:** Qwen3-Coder 30B (Q6 quantization)  
+- **Memory layer:** SQLite (explicit persistence)  
+- **RAG sources (offline-first):**
+  - Wikipedia (curated / offline)
+  - MITRE ATT&CK
+  - arXiv (titles + abstracts only)
+
+---
+
 ## Components used
 
 This lab uses the following tools (pinned versions recommended):
-- jarvis-cli — CLI interface and tool routing
-- rag-folder-tool — dataset ingestion/indexing
-- kiwix-wrapper — offline Wikipedia access
-- arxiv-tool — arXiv abstracts ingestion/search
 
-  
+- **jarvis-cli** — CLI interface and tool routing  
+- **rag-folder-tool** — dataset ingestion / indexing  
+- **kiwix-wrapper** — offline Wikipedia access  
+- **arxiv-tool** — arXiv abstracts ingestion / search  
+
 ---
 
-### Design principles
+## Design principles
 
 - Native services over containers  
 - CLI as the primary interface  
 - Tools invoked only when explicitly required  
 - No hidden context or silent augmentation  
-- Memory operations are explicit and reversible
-- Persistent memory for long term benefits, while maintaining the ability to change model.
-- Custom display:
-  - adapted for terminal display to enhance readability,
-  - answers seperated from user inputs by boxing the answers in colored lines.  
+- Memory operations are explicit and reversible  
+- Persistent memory enables long-term workflows while keeping model choice flexible  
+
+**Terminal output formatting (quality-of-life):**  
+Optional formatting to improve readability (clear separation between user input and model output, boxed output).
 
 ---
 
@@ -55,9 +51,9 @@ This lab uses the following tools (pinned versions recommended):
 - Inspectable and user-controlled memory  
 
 Out of scope by design:
-- GUIs and dashboards
-- OpenWebUI
-- Voice input / output
-- Autonomous agents
-- GPU micro-optimization
-- Cloud inference or storage
+- GUIs and dashboards  
+- OpenWebUI  
+- Voice input / output  
+- Autonomous agents  
+- GPU micro-optimization  
+- Cloud inference or storage  
