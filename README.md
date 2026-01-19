@@ -39,8 +39,7 @@ This lab uses the following tools (pinned versions recommended):
 - Tools invoked only when explicitly required  
 - No hidden context or silent augmentation  
 - Memory operations are explicit and reversible
-- Using persistent memory for long term benefits,
-- while maintaining the ability to change model but keeping persistent memory.
+- Persistent memory for long term benefits, while maintaining the ability to change model.
 - Custom display:
   - adapted for terminal display to enhance readability,
   - answers seperated from user inputs by boxing the answers in colored lines.  
