@@ -19,8 +19,7 @@ This repository documents the setup of a **local, CLI-only AI workstation** desi
   1. Wikipedia (curated / offline)
   2. MITRE ATT&CK
   3. arXiv (titles + abstracts only)
-  4. Persistent SQL-backed memory
- 
+  
   
 ## Components used
 
