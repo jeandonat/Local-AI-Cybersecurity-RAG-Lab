@@ -1,115 +1,72 @@
-# Local AI Cybersecurity RAG Lab (Native Ollama + OpenWebUI)
+# Local AI Cybersecurity RAG Lab  
+CLI-Only · Native Ollama · Offline-First
 
-A **GitHub-documented build log** of a full local AI workstation:
+This repository documents the setup of a **local, CLI-only AI workstation** designed to support **cybersecurity analysis, research, and future automation** within a broader SOC-focused roadmap.
 
-- **Ollama (native on Ubuntu)** as the primary inference server
-- **OpenWebUI** as the UI + model selector + Knowledge Base (RAG)
-- **Models installed locally:**
-  - **Llama 3.1 (13B)**
-  - **Qwen 2.5 (14B)**
-  - (Optional) Mistral / TinyLlama for lightweight tasks
-- **JD Master persona** built as an Ollama custom model
-- **RAG roadmap:** Wikipedia first → MITRE ATT&CK second
+It is intentionally documented as a **build log**: what was installed, how it was configured, what worked, what failed, and why specific design choices were made.
 
-> This repo intentionally excludes: voice features, “GPU tweaking”, and non-essential optimization.  
-> Goal: **reproducible**, **stable**, **recruiter-readable** documentation.
+This project does **not** aim to deliver a product or agent framework. Its purpose is to provide a **reproducible, auditable foundation** for later integration with SOC tooling.
 
 ---
 
-## What you’ll find here
+## Scope and constraints
 
-- A **complete install + configuration guide**
-- A “what actually happened” **build log** (including mistakes + fixes)
-- Scripts to **capture evidence** (versions, models, systemd status) for GitHub
-- A clean place to add **RAG datasets** later (Wikipedia, MITRE ATT&CK)
+- CLI-only operation  
+- Native services (no Docker, no cloud APIs)  
+- Offline-first by default  
+- Explicit tool invocation (no automatic augmentation)  
+- Inspectable and user-controlled memory  
 
----
-
-## Architecture (final)
-
-```text
-Browser :3000  ──►  OpenWebUI  ──►  Ollama (native)  ──►  Models stored in ~/.ollama
-                  (Knowledge Base / RAG later)
-```
-
-### Why “native Ollama”?
-- Avoids Docker networking edge cases
-- Simplifies model storage
-- Easier autostart and updates
-- Fewer moving parts
+Out of scope by design:
+- GUIs and dashboards
+- OpenWebUI
+- Voice input / output
+- Autonomous agents
+- GPU micro-optimization
+- Cloud inference or storage
 
 ---
 
-## Quickstart (verify your system)
+## Core components
 
-```bash
-ollama --version
-ollama list
-curl -s http://localhost:11434/api/tags | head
-```
-
-Open OpenWebUI and set **Ollama API Base** to:
-
-- `http://localhost:11434`
-
----
-
-## Models
-
-Recommended “two-model strategy”:
-
-- **Llama 3.1 (13B)** → general reasoning + synthesis
-- **Qwen 2.5 (14B)** → technical depth (cyber, scripting, structured analysis)
-
-Install docs: `docs/01_installation/03_models.md`
+- **Ollama (native on Ubuntu)** — local inference engine  
+- **Primary model:**  
+  - Qwen3-Coder 30B (Q6 quantization)  
+- **Custom persona:**  
+  - JD Master (Ollama Modelfile)  
+- **Memory layer:**  
+  - SQLite (explicit persistence)  
+- **RAG roadmap (offline-first):**
+  1. Wikipedia (curated / offline)
+  2. MITRE ATT&CK
+  3. arXiv (titles + abstracts only)
+  4. Persistent SQL-backed memory
 
 ---
 
-## JD Master persona
+## Repository contents
 
-- Persona file: `personas/jd-master/Modelfile`
-- Build: `ollama create jd-master -f personas/jd-master/Modelfile`
+- CLI installation and configuration documentation  
+- Rationale for architectural decisions  
+- Scripts to capture operational evidence:
+  - Installed models
+  - Ollama version
+  - systemd service state
+- Structured directories for future RAG ingestion
 
-Docs: `docs/01_installation/04_persona.md`
-
----
-
-## RAG roadmap
-
-- Wikipedia (offline) → `docs/02_rag/01_wikipedia.md`
-- MITRE ATT&CK (offline) → `docs/02_rag/02_mitre_attack.md`
+This repository favors **traceability and control** over convenience.
 
 ---
 
-## Autostart
+## Architecture
 
-Docs: `docs/03_ops/01_autostart.md`
+### Design principles
 
----
+- Native services over containers  
+- CLI as the primary interface  
+- Tools invoked only when explicitly required  
+- No hidden context or silent augmentation  
+- Memory operations are explicit and reversible  
 
-## Evidence capture (highly recommended)
+### High-level flow
 
-Run this after each milestone to generate shareable evidence files:
-
-```bash
-bash scripts/capture_evidence.sh
-```
-
-Outputs go to: `docs/_evidence/`
-
----
-
-## Repo layout
-
-```text
-docs/              Detailed documentation
-personas/          Ollama Modelfiles (JD Master)
-scripts/           Evidence capture + helper scripts
-rag/               Placeholders for datasets + ingestion
-```
-
----
-
-## License
-
-Add one before publishing (MIT or Apache-2.0 are common).
