@@ -5,13 +5,13 @@
 - Avoids port binding conflicts and Docker image/version tag confusion
 - Simple model storage at `~/.ollama/`
 
-## Why OpenWebUI
-- Simple UI for multi-model workflows
+## Why CLI
+- More support for tools than GUI like openwebui
 - Built-in Knowledge Base support for RAG
-- Easy persona/model switching
 
-## Why Llama 3.1 13B + Qwen 2.5 14B
-- Llama: strong general assistant and synthesis
+
+## Why Qwen3-coder 30B quant 6
+- Best option for my hardware
 - Qwen: excellent structured reasoning and technical depth (cyber + code)
 
 ## Out of scope (by design)
