@@ -45,29 +45,15 @@ Out of scope by design:
 
 ---
 
-## Repository contents
-
-- CLI installation and configuration documentation  
-- Rationale for architectural decisions  
-- Scripts to capture operational evidence:
-  - Installed models
-  - Ollama version
-  - systemd service state
-- Structured directories for future RAG ingestion
-
-This repository favors **traceability and control** over convenience.
-
----
-
-## Architecture
-
 ### Design principles
 
 - Native services over containers  
 - CLI as the primary interface  
 - Tools invoked only when explicitly required  
 - No hidden context or silent augmentation  
-- Memory operations are explicit and reversible  
+- Memory operations are explicit and reversible
+- Using persistent memory for long term benefits,
+- while maintaining the ability to change model but keeping persistent memory.
 
-### High-level flow
+
 
