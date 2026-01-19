@@ -32,8 +32,9 @@ Out of scope by design:
 - **Ollama (native on Ubuntu)** — local inference engine  
 - **Primary model:**  
   - Qwen3-Coder 30B (Q6 quantization)  
-- **Custom persona:**  
-  - JD Master (Ollama Modelfile)  
+- **Custom display:**  
+  - adapted for terminal display to enhance readability,
+  - answers seprated from user inputs by boxing the answers in colored lines.  
 - **Memory layer:**  
   - SQLite (explicit persistence)  
 - **RAG roadmap (offline-first):**
